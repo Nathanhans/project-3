@@ -25,17 +25,54 @@ let myMap = L.map("map", {
 d3.json('../data/California_County_Boundaries.geojson').then(function(data) 
 {
     // Creating a GeoJSON layer with the retrieved data
-    L.geoJson(data).addTo(myMap);
-  }).then(d3.json('../etl/presidential_results_only.json').then(function(data) 
-        {
-    
-    //THIS IS WHERE THE DROP DOWN GOES...LET'S CREATE AN ARRAY INSTEAD OF A LOOP
-    
-    
-    console.log(data)
+    let countiesLayer = L.geoJson(data).addTo(myMap);
 
+    d3.json('../etl/presidential_results_only.json').then(function(electionData) 
+    {
+
+        //THIS IS WHERE THE DROP DOWN GOES...LET'S CREATE AN ARRAY INSTEAD OF A LOOP
+
+      countiesLayer.eachLayer(function (layer)
+      {
+        
+        var countyName = layer.feature.properties.CountyName;
+
+        var electionResults = electionData.filter(function(item) {
+          // Currently filtering to just year 2000-- ideally this will by dynamic based on election drop down
+          return (item.county_name.toLowerCase() === countyName.toLowerCase()) && (item.year === 2000);
+        })
+
+        // Attach election data to GeoJSON properties
+        layer.feature.properties.electionResults = electionResults;
+
+      })
+
+      countiesLayer.setStyle(function (feature) {
+        var electionResults = feature.properties.electionResults[0];
+        return {
+            fillColor: getColor(electionResults),
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            fillOpacity: 0.8
         }
-));
+      })
+
+    })
+});
+
+function getColor(electionResults)
+{
+
+  if (electionResults.party === "DEMOCRAT") {
+    return "blue"
+  } else if (electionResults.party === "REPUBLICAN") {
+    return "red"
+  } else {
+    return "gray"
+  }
+
+}
 
 // {
   
