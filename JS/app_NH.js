@@ -4,11 +4,12 @@
 
 // console.log(presResults)
 
+let dropDownArray = [2000,2004,2008,2012,2016,2020];
 
 let myMap = L.map("map", {
     center: [36.7783, -119.4179],
     // center:[40.7128, -74.0059],
-    zoom: 6
+    zoom: 7
   });
   
   // Adding the tile layer
@@ -19,15 +20,23 @@ let myMap = L.map("map", {
   // Use this link to get the GeoJSON data.
 //   let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-Mapping-Web/nyc.geojson";
   
-  // Getting our GeoJSON data
-//   d3.json('../ETL/presidential_results.json').then(function(data) {
-  d3.json('../data/California_County_Boundaries.geojson').then(function(data) {
-    // Creating a GeoJSON layer with the retrieved data
+// Getting our GeoJSON data
 
+d3.json('../data/California_County_Boundaries.geojson').then(function(data) 
+{
+    // Creating a GeoJSON layer with the retrieved data
+    L.geoJson(data).addTo(myMap);
+  }).then(d3.json('../etl/presidential_results_only.json').then(function(data) 
+        {
+    
+    //THIS IS WHERE THE DROP DOWN GOES...LET'S CREATE AN ARRAY INSTEAD OF A LOOP
+    
+    
     console.log(data)
 
-    L.geoJson(data).addTo(myMap);
-  });
+        }
+));
+
 // {
   
 
