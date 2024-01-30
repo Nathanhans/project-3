@@ -9,7 +9,7 @@ let dropDownArray = [2000,2004,2008,2012,2016,2020];
 let myMap = L.map("map", {
     center: [36.7783, -119.4179],
     // center:[40.7128, -74.0059],
-    zoom: 7
+    zoom: 6
   });
   
   // Adding the tile layer
@@ -27,10 +27,19 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
     // Creating a GeoJSON layer with the retrieved data
     let countiesLayer = L.geoJson(data).addTo(myMap);
 
+    //DROP DOWN CONTROL
+
+    for (let i = 0; i < dropDownArray.length; i++)
+      {
+        d3.select("#selDataset").append("option").text(dropDownArray[i])
+      } 
+      
+    //END OF DROP DOWN CONTROL
+
     d3.json('../etl/presidential_results_only.json').then(function(electionData) 
     {
 
-        //THIS IS WHERE THE DROP DOWN GOES...LET'S CREATE AN ARRAY INSTEAD OF A LOOP
+        //
 
       countiesLayer.eachLayer(function (layer)
       {
