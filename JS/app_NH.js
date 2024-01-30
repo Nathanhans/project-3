@@ -5,6 +5,7 @@
 // console.log(presResults)
 
 let dropDownArray = [2000,2004,2008,2012,2016,2020];
+let electionResults;
 
 let myMap = L.map("map", {
     center: [38, -119.4179],
@@ -75,11 +76,34 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         }
       })
 
+    
+    
+    var electionResults = electionData.filter(function(item) {
+      // Currently filtering to just year 2000-- ideally this will by dynamic based on election drop down
+      return (item.year === 2000)});
+      
+    console.log(electionResults)
     // Initialize Bar Chart
     // use electionData
+    let yAxis = electionResults.pcttotal;
+    let xAxis = electionResults.county_name;
+    let labels = electionResults.candidate;
+    
+    var data = [{
+        type: 'bar',
+        x: xAxis,
+        y: yAxis,
+        text: labels,
+        
+      }];
+    let layout = {
+        title: "Top 10 OTUs Present"
+    };
+      
+      Plotly.newPlot('bar', data, layout);
 
 
-
+    console.log(electionResults.pcttotal)
 
 
 
