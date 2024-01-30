@@ -7,21 +7,25 @@
 let dropDownArray = [2000,2004,2008,2012,2016,2020];
 
 let myMap = L.map("map", {
-    center: [36.7783, -119.4179],
-    // center:[40.7128, -74.0059],
-    zoom: 7
+    center: [38, -119.4179],
+    zoom: 6
   });
   
-  // Adding the tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(myMap);
+// Adding the tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(myMap);
   
   // Use this link to get the GeoJSON data.
 //   let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-Mapping-Web/nyc.geojson";
-  
-// Getting our GeoJSON data
 
+// dropdown initialization
+for (let i = 0; i < dropDownArray.length; i++)
+      {
+        d3.select("#selDataset").append("option").text(dropDownArray[i])
+      }
+
+// Initialize the page
 d3.json('../data/California_County_Boundaries.geojson').then(function(data) 
 {
     // Creating a GeoJSON layer with the retrieved data
@@ -45,6 +49,10 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         // Attach election data to GeoJSON properties
         layer.feature.properties.electionResults = electionResults;
 
+        layer.bindPopup(electionResults[0].county_name)
+
+        // console.log(electionResults)
+
       })
 
       countiesLayer.setStyle(function (feature) {
@@ -54,12 +62,118 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
             weight: 1,
             opacity: 1,
             color: 'white',
-            fillOpacity: 0.8
+            fillOpacity: .8
         }
       })
 
+    // Initialize Bar Chart
+    // use electionData
+
+
+
+
+
+
+
+
+
+
+
+
+    // Initialize Pie Chart
+
+
+
+
+
+
+
+
+
+
+
     })
+})
+
+
+
+
+// Getting our GeoJSON data
+function optionChanged(dropdownValue) {
+
+// need to clear markers everytime we call this function.
+myMap.eachLayer(layer => {
+  if (layer instanceof L.GeoJSON) {
+      myMap.removeLayer(layer);
+  }
 });
+
+d3.json('../data/California_County_Boundaries.geojson').then(function(data) 
+{
+    // Creating a GeoJSON layer with the retrieved data
+    let countiesLayer = L.geoJson(data).addTo(myMap);
+
+    d3.json('../etl/presidential_results_only.json').then(function(electionData) 
+    {
+
+        //THIS IS WHERE THE DROP DOWN GOES...LET'S CREATE AN ARRAY INSTEAD OF A LOOP
+
+      countiesLayer.eachLayer(function (layer)
+      {
+        
+        var countyName = layer.feature.properties.CountyName;
+
+        var electionResults = electionData.filter(function(item) {
+          // Currently filtering to just year 2000-- ideally this will by dynamic based on election drop down
+          return (item.county_name.toLowerCase() === countyName.toLowerCase()) && (item.year === parseInt(dropdownValue));
+        })
+
+        // Attach election data to GeoJSON properties
+        layer.feature.properties.electionResults = electionResults;
+
+      })
+
+      countiesLayer.setStyle(function (feature) {
+        var electionResults = feature.properties.electionResults[0];
+        return {
+            fillColor: getColor(electionResults),
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            fillOpacity: .8
+        }
+      })
+
+
+    // Update Bar Chart
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Update Pie Chart
+
+
+
+
+
+
+
+
+
+
+
+    })
+})
+};
 
 function getColor(electionResults)
 {
