@@ -32,13 +32,6 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
     // Creating a GeoJSON layer with the retrieved data
     let countiesLayer = L.geoJson(data).addTo(myMap);
 
-    //DROP DOWN CONTROL-----------
-
-    for (let i = 0; i < dropDownArray.length; i++)
-      {
-        d3.select("#selDataset").append("option").text(dropDownArray[i])
-      } 
-
     //END OF DROP DOWN CONTROL------------
 
     d3.json('../etl/presidential_results_only.json').then(function(electionData) 
@@ -85,25 +78,51 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
     console.log(electionResults)
     // Initialize Bar Chart
     // use electionData
-    let yAxis = electionResults.pcttotal;
-    let xAxis = electionResults.county_name;
-    let labels = electionResults.candidate;
+
+    let xVals = [];
+    let yVals = [];
+    let candidate = [];
+    let party = [];
+    let party_votes = 
+      {'Democrat': 0,
+       'Republican': 0,
+       'Other': 0
+     }
     
-    var data = [{
-        type: 'bar',
-        x: xAxis,
-        y: yAxis,
-        text: labels,
-        
-      }];
-    let layout = {
-        title: "Top 10 OTUs Present"
-    };
+    for (let i = 0; i <electionResults.length; i++) {
       
-      Plotly.newPlot('bar', data, layout);
+        
+        xVals.push(electionResults[i].county_name);
+        yVals.push(electionResults[i].pcttotal);
+        candidate.push(electionResults[i].candidate);
+        party.push(electionResults[i].party);
+        if (electionResults[i].party == 'REPUBLICAN')
+          {
+           party_votes.Republican = party_votes.Republican + 1
+          }
+        else if (electionResults[i].party == 'DEMOCRAT')
+          {
+            party_votes.Democrat = party_votes.Democrat + 1
+          }
+        else 
+          {
+            party_votes.Other = party_votes.Other + 1
+          }
+      
+      }
 
+//CHART 1, HORIZONTAL BAR
+      let trace1 = {x: xVals, y: yVals, type: 'bar', hoverinfo: candidate };
+      let data = [trace1];
+      let layout = { };
+      Plotly.newPlot("bar", data, layout); 
 
-    console.log(electionResults.pcttotal)
+//CHART 2, PIE CHART
+
+var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie'}];
+
+Plotly.newPlot('bubble', data2);
+    
 
 
 
@@ -180,6 +199,29 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
 
     // Update Bar Chart
 
+    var electionResults = electionData.filter(function(item) {
+      // Currently filtering to just year 2000-- ideally this will by dynamic based on election drop down
+      return (item.year === parseInt(dropdownValue))});
+      
+    let xVals = [];
+    let yVals = [];
+    let candidate = [];
+    let party = [];
+    
+    for (let i = 0; i <electionResults.length; i++) {
+      
+        console.log(electionResults[i].county_name);
+        xVals.push(electionResults[i].county_name);
+        yVals.push(electionResults[i].pcttotal);
+        candidate.push(electionResults[i].candidate);
+        party.push(electionResults[i].party)
+      
+      }
+
+      let trace1 = {x: xVals, y: yVals, type: 'bar', hoverinfo: candidate };
+      let data = [trace1];
+      let layout = { };
+      Plotly.newPlot("bar", data, layout); 
 
 
 
