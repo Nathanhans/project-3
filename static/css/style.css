@@ -1,12 +1,13 @@
 body {
   padding: 0;
   margin: 0;
+  overflow: auto;
 }
 
 #map {
-  position: absolute;
-  top: 200px;
-  left: 20px;
+  position: relative;
+  top: 80px;
+  left: 5%;
   height: 700px;
   width: 500px;
 }
@@ -51,4 +52,22 @@ html {
 
 h1 {
   text-align: center;
+}
+
+#bar {
+  position: relative;
+  bottom: 25;
+  width: 100%;
+  height: 300px;
+  margin: 20px;
+  background-color: #f0f0f0;
+  
+}
+
+#bubble {
+  position: absolute;
+  top: 200px;
+  right: 5%;
+  height: 700px;
+  width: 500px;
 }
