@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-  <!-- <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Bellybutton Biodiversity</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">\
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <meta charset="UTF-8">
   <title>California Election Results</title>
@@ -38,33 +36,34 @@
         <p>Use the dropdown menu to select the election year you would like to examine</p>
       </div>
     </div>
+  </div>
+
+  <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-12">
         <div class="well">
           <h5>Election year</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
-        <!-- <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>> -->
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div id="map"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
       </div>
     </div>
+  </div>
+
+  <!-- <div class="container"> -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
+        <div id="map"></div>
+      </div>
+
+      <div class="col-md-6">
+        <div id="bar"></div>
+      </div>
+
+      <div class="col-md-4">
         <div id="bubble"></div>
       </div>
     </div>
-  </div> 
-  <div id="map"></div>
+  <!-- </div> -->
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
