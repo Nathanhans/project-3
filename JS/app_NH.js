@@ -209,6 +209,26 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         }
       })
 
+    // add legend WIP
+      // var legend = L.control({position: 'bottomleft'});
+      // legend.onAdd = function () {
+  
+      // var div = L.DomUtil.create('div', 'info legend');
+      // labels = ['<strong>Depth</strong>'],
+      // depthBuckets = getDepthBuckets(minDepth,maxDepth,numBuckets)
+  
+      // for (var i = 0; i < depthBuckets[0].length; i++) {
+  
+      //     labels.push("<li style=\"background-color: " + depthColor(depthBuckets[0][i],minDepth,maxDepth,numBuckets) + "\"></li>" + (depthBuckets[1][i] ? depthBuckets[1][i] : '+'));
+  
+      //     }
+  
+      //     div.innerHTML = labels.join('<br>');
+          
+      // return div;
+      // };
+      // legend.addTo(myMap);
+
 
     // Update Bar Chart
 
