@@ -53,11 +53,16 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         layer.feature.properties.electionResults = electionResults;
 
         // Attaching election data to popup
-        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
-                         Winning Party: ${electionResults[0].party}<br>
-                         Winning Candidate: ${electionResults[0].candidate}<br>
-                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
-                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
+        // popup example
+        // layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Estimated employed population with children age 6-17: " +
+        // feature.properties.DP03_16E + "<br /><br />Estimated Total Income and Benefits for Families: $" + feature.properties.DP03_75E);
+
+        // Attaching election data to popup
+        layer.bindPopup(`<h3><strong> County: </strong> ${electionResults[0].county_name}</h3>
+                         <strong> Winning Party: </strong> ${electionResults[0].party}<br />
+                         <strong> Winning Candidate: </strong> ${electionResults[0].candidate}<br />
+                         <strong> Candidate's Votes: </strong> ${electionResults[0].candidatevotes.toLocaleString()}<br />
+                         <strong> % of Total Votes: </strong> ${parseFloat(electionResults[0].pcttotal).toFixed(1)}%<br />`)
 
         // console.log(electionResults)
 
@@ -185,11 +190,11 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         layer.feature.properties.electionResults = electionResults;
 
         // Attaching election data to popup
-        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
-                         Winning Party: ${electionResults[0].party}<br>
-                         Winning Candidate: ${electionResults[0].candidate}<br>
-                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
-                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
+        layer.bindPopup(`<h3><strong> County: </strong> ${electionResults[0].county_name}</h3>
+                         <strong> Winning Party: </strong> ${electionResults[0].party}<br />
+                         <strong> Winning Candidate: </strong> ${electionResults[0].candidate}<br />
+                         <strong> Candidate's Votes: </strong> ${electionResults[0].candidatevotes.toLocaleString()}<br />
+                         <strong> % of Total Votes: </strong> ${parseFloat(electionResults[0].pcttotal).toFixed(1)}%<br />`)
 
       })
 
