@@ -53,11 +53,16 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         layer.feature.properties.electionResults = electionResults;
 
         // Attaching election data to popup
-        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
-                         Winning Party: ${electionResults[0].party}<br>
-                         Winning Candidate: ${electionResults[0].candidate}<br>
-                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
-                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
+        // popup example
+        // layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Estimated employed population with children age 6-17: " +
+        // feature.properties.DP03_16E + "<br /><br />Estimated Total Income and Benefits for Families: $" + feature.properties.DP03_75E);
+
+        // Attaching election data to popup
+        layer.bindPopup(`<h3><strong> County: </strong> ${electionResults[0].county_name}</h3>
+                         <strong> Winning Party: </strong> ${electionResults[0].party}<br />
+                         <strong> Winning Candidate: </strong> ${electionResults[0].candidate}<br />
+                         <strong> Candidate's Votes: </strong> ${electionResults[0].candidatevotes.toLocaleString()}<br />
+                         <strong> % of Total Votes: </strong> ${parseFloat(electionResults[0].pcttotal).toFixed(1)}%<br />`)
 
         // console.log(electionResults)
 
@@ -186,11 +191,11 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         layer.feature.properties.electionResults = electionResults;
 
         // Attaching election data to popup
-        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
-                         Winning Party: ${electionResults[0].party}<br>
-                         Winning Candidate: ${electionResults[0].candidate}<br>
-                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
-                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
+        layer.bindPopup(`<h3><strong> County: </strong> ${electionResults[0].county_name}</h3>
+                         <strong> Winning Party: </strong> ${electionResults[0].party}<br />
+                         <strong> Winning Candidate: </strong> ${electionResults[0].candidate}<br />
+                         <strong> Candidate's Votes: </strong> ${electionResults[0].candidatevotes.toLocaleString()}<br />
+                         <strong> % of Total Votes: </strong> ${parseFloat(electionResults[0].pcttotal).toFixed(1)}%<br />`)
 
       })
 
@@ -204,6 +209,26 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
             fillOpacity: .8
         }
       })
+
+    // add legend WIP
+      // var legend = L.control({position: 'bottomleft'});
+      // legend.onAdd = function () {
+  
+      // var div = L.DomUtil.create('div', 'info legend');
+      // labels = ['<strong>Depth</strong>'],
+      // depthBuckets = getDepthBuckets(minDepth,maxDepth,numBuckets)
+  
+      // for (var i = 0; i < depthBuckets[0].length; i++) {
+  
+      //     labels.push("<li style=\"background-color: " + depthColor(depthBuckets[0][i],minDepth,maxDepth,numBuckets) + "\"></li>" + (depthBuckets[1][i] ? depthBuckets[1][i] : '+'));
+  
+      //     }
+  
+      //     div.innerHTML = labels.join('<br>');
+          
+      // return div;
+      // };
+      // legend.addTo(myMap);
 
 
     // Update Bar Chart
