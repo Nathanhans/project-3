@@ -128,7 +128,10 @@ Plotly.newPlot("bar", data, layout);
 //CHART 2, PIE CHART
 
 var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie', marker: {colors: ['rgb(0, 48, 240)', 'rgb(215, 11, 11)']}}];
-Plotly.newPlot('bubble', data2);
+var layout2 = {title: 'Percentage of Counties Won by Party', font: {size: 15}, showlegend: false};
+Plotly.newPlot('bubble', data2,layout2);
+
+
     
 
 
@@ -279,7 +282,8 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
       // Update Pie Chart
 
       var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie', marker: {colors: ['rgb(0, 48, 240)', 'rgb(215, 11, 11)']}}];
-      Plotly.newPlot('bubble', data2);
+      var layout2 = {title: 'Percentage of Counties Won by Party', font: {size: 15}, showlegend: false};
+      Plotly.newPlot('bubble', data2,layout2);
 
 
 
