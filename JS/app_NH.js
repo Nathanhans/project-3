@@ -52,7 +52,12 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         // Attach election data to GeoJSON properties
         layer.feature.properties.electionResults = electionResults;
 
-        layer.bindPopup(electionResults[0].county_name)
+        // Attaching election data to popup
+        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
+                         Winning Party: ${electionResults[0].party}<br>
+                         Winning Candidate: ${electionResults[0].candidate}<br>
+                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
+                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
 
         // console.log(electionResults)
 
@@ -109,7 +114,7 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         { party_votes.Other = party_votes.Other + 1}
                                                     }
 //CHART 1, HORIZONTAL BAR
-let trace1 = {x: xVals,y: yVals,type: 'bar',marker: {color: colors}};
+let trace1 = {x: yVals, y: xVals, orientation:'h', type: 'bar', marker: {color: colors}};
 let data = [trace1];
 let layout = { };
 Plotly.newPlot("bar", data, layout); 
@@ -179,6 +184,13 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         // Attach election data to GeoJSON properties
         layer.feature.properties.electionResults = electionResults;
 
+        // Attaching election data to popup
+        layer.bindPopup(`County Name: ${electionResults[0].county_name}<br>
+                         Winning Party: ${electionResults[0].party}<br>
+                         Winning Candidate: ${electionResults[0].candidate}<br>
+                         Candidate's Votes: ${electionResults[0].candidatevotes}<br>
+                         % of Total Votes: ${electionResults[0].pcttotal}<br>`)
+
       })
 
       countiesLayer.setStyle(function (feature) {
@@ -231,12 +243,7 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
           
     }
       // UPDATE BAR CHART
-      let trace1 = 
-        {x: xVals
-        ,y: yVals
-        ,type: 'bar'
-        ,marker: {color: colors}
-        };
+      let trace1 = {x: yVals,y: xVals,orientation:'h',type: 'bar',marker: {color: colors}};
       let data = [trace1];
       let layout = { };
       Plotly.newPlot("bar", data, layout); 
