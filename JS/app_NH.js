@@ -82,6 +82,7 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
     let xVals = [];
     let yVals = [];
     let candidate = [];
+    let colors = [];
     let party = [];
     let party_votes = 
       {'Democrat': 0,
@@ -89,38 +90,33 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
        'Other': 0
      }
     
-    for (let i = 0; i <electionResults.length; i++) {
+     for (let i = 0; i <electionResults.length; i++) {
       
         
-        xVals.push(electionResults[i].county_name);
-        yVals.push(electionResults[i].pcttotal);
-        candidate.push(electionResults[i].candidate);
-        party.push(electionResults[i].party);
-        if (electionResults[i].party == 'REPUBLICAN')
-          {
-           party_votes.Republican = party_votes.Republican + 1
-          }
-        else if (electionResults[i].party == 'DEMOCRAT')
-          {
-            party_votes.Democrat = party_votes.Democrat + 1
-          }
-        else 
-          {
-            party_votes.Other = party_votes.Other + 1
-          }
-      
-      }
-
+      xVals.push(electionResults[i].county_name);
+      yVals.push(electionResults[i].pcttotal);
+      candidate.push(electionResults[i].candidate);
+      party.push(electionResults[i].party);
+      if (electionResults[i].party == 'REPUBLICAN')
+        {party_votes.Republican = party_votes.Republican + 1;
+        colors.push('rgb(215, 11, 11)');
+        }
+      else if (electionResults[i].party == 'DEMOCRAT')
+        {party_votes.Democrat = party_votes.Democrat + 1;
+         colors.push('rgb(0, 48, 240)');
+        }
+      else 
+        { party_votes.Other = party_votes.Other + 1}
+                                                    }
 //CHART 1, HORIZONTAL BAR
-      let trace1 = {x: xVals, y: yVals, type: 'bar', hoverinfo: candidate };
-      let data = [trace1];
-      let layout = { };
-      Plotly.newPlot("bar", data, layout); 
+let trace1 = {x: xVals,y: yVals,type: 'bar',marker: {color: colors}};
+let data = [trace1];
+let layout = { };
+Plotly.newPlot("bar", data, layout); 
 
 //CHART 2, PIE CHART
 
-var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie'}];
-
+var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie', marker: {colors: ['rgb(0, 48, 240)', 'rgb(215, 11, 11)']}}];
 Plotly.newPlot('bubble', data2);
     
 
@@ -207,36 +203,48 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
     let yVals = [];
     let candidate = [];
     let party = [];
+    let colors = []
+    let party_votes = 
+      {'Democrat': 0,
+       'Republican': 0,
+       'Other': 0
+     }
     
     for (let i = 0; i <electionResults.length; i++) {
       
-        console.log(electionResults[i].county_name);
-        xVals.push(electionResults[i].county_name);
-        yVals.push(electionResults[i].pcttotal);
-        candidate.push(electionResults[i].candidate);
-        party.push(electionResults[i].party)
-      
-      }
+        
+      xVals.push(electionResults[i].county_name);
+      yVals.push(electionResults[i].pcttotal);
+      candidate.push(electionResults[i].candidate);
+      party.push(electionResults[i].party);
+      if (electionResults[i].party == 'REPUBLICAN')
+        {party_votes.Republican = party_votes.Republican + 1;
+        colors.push('rgb(215, 11, 11)');
+        }
+      else if (electionResults[i].party == 'DEMOCRAT')
+        {party_votes.Democrat = party_votes.Democrat + 1;
+         colors.push('rgb(0, 48, 240)');
+        }
+      else 
+        { party_votes.Other = party_votes.Other + 1}
 
-      let trace1 = {x: xVals, y: yVals, type: 'bar', hoverinfo: candidate };
+          
+    }
+      // UPDATE BAR CHART
+      let trace1 = 
+        {x: xVals
+        ,y: yVals
+        ,type: 'bar'
+        ,marker: {color: colors}
+        };
       let data = [trace1];
       let layout = { };
       Plotly.newPlot("bar", data, layout); 
+ 
+      // Update Pie Chart
 
-
-
-
-
-
-
-
-
-
-
-
-    // Update Pie Chart
-
-
+      var data2 = [{values: Object.values(party_votes), labels: Object.keys(party_votes), type: 'pie', marker: {colors: ['rgb(0, 48, 240)', 'rgb(215, 11, 11)']}}];
+      Plotly.newPlot('bubble', data2);
 
 
 
