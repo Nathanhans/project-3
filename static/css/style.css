@@ -5,16 +5,11 @@
 } */
 
 #map {
-  /* position: relative; */
-  height: 500px;
-  width: 10%;
+  height: 700px;
+  width: 500px;
   left: 5%;
 }
 
-/* body,
-html {
-  height: 100%;
-} */
 
 .leaflet-popup-content {
   text-align: center;
@@ -23,32 +18,17 @@ html {
 /* CSS from the leaflet-choropleth documentation */
 
 #bar {
-  /* position: relative; */
   /* left: 30%; */
-  width: 500px;
-  height: 500px;
+  height: 700px;
+  width: 800px;
   /* margin: 5%; */
   /* bottom: 500px; */
-  background-color: #f0f0f0;
   
 }
 
 #bubble {
-  /* position: relative; */
   /* left: 60%; */
-  height: 500px;
-  width: 10%;
+  height: 700px;
+  width: 500px;
   /* bottom: 1000px; */
-}
-
-#col1 {
-  background-color: red;
-}
-
-#col2 {
-  background-color: green;
-}
-
-#col3 {
-  background-color: blue;
 }

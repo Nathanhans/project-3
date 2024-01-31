@@ -20,11 +20,18 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   // Use this link to get the GeoJSON data.
 //   let link = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/15-Mapping-Web/nyc.geojson";
 
+
+// Legend
+d3.select("#legend").append("option").text("Republican: Red ");
+d3.select("#legend").append("option").text("Democrat: Blue ");
+
+
 // dropdown initialization
 for (let i = 0; i < dropDownArray.length; i++)
       {
         d3.select("#selDataset").append("option").text(dropDownArray[i])
       }
+
 
 // Initialize the page
 d3.json('../data/California_County_Boundaries.geojson').then(function(data) 
