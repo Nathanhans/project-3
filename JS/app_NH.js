@@ -116,7 +116,8 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
 //CHART 1, HORIZONTAL BAR
 let trace1 = {x: yVals, y: xVals, orientation:'h', type: 'bar', marker: {color: colors}};
 let data = [trace1];
-let layout = { };
+let layout = {title: 'Winning Percentage of Votes by County', font: {size: 15}, showlegend: false, xaxis: {title: {text: 'Percent of Total Votes'},  yaxis: {title: {text: 'County Names'}}}};
+
 Plotly.newPlot("bar", data, layout); 
 
 //CHART 2, PIE CHART
@@ -243,10 +244,12 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
           
     }
       // UPDATE BAR CHART
-      let trace1 = {x: yVals,y: xVals,orientation:'h',type: 'bar',marker: {color: colors}};
+      let trace1 = {x: yVals, y: xVals, orientation:'h', type: 'bar', marker: {color: colors}};
       let data = [trace1];
-      let layout = { };
+      let layout = {title: 'Winning Percentage of Votes by County', font: {size: 15}, showlegend: false, xaxis: {title: {text: 'Percent of Total Votes'},  yaxis: {title: {text: 'County Names'}}}};
+      
       Plotly.newPlot("bar", data, layout); 
+      
  
       // Update Pie Chart
 
