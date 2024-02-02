@@ -36,6 +36,8 @@ Any code that is not our own:
 
     None!
 
+Data has been uploaded to MongoDB:
+
 ![Screenshot 2024-02-01 at 8 36 02 PM](https://github.com/Nathanhans/project-3/assets/143769037/397f23ec-650a-4756-9481-854973ec94ba)
 
 
