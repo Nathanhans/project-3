@@ -22,8 +22,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 // Legend
-d3.select("#legend").append("option").text("Republican: Red ");
-d3.select("#legend").append("option").text("Democrat: Blue ");
+d3.select("#legend").append("h4").text("Republican: Red").style("color","red");
+d3.select("#legend").append("h4").text("Democrat: Blue").style("color","blue");
 
 
 // dropdown initialization

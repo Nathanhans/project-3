@@ -31,9 +31,8 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
+      <div class="col-md-12 text-center">
         <h1>California Presidential Election Results 2000 - 2020</h1>
-        <p>Use the dropdown menu to select the election year you would like to examine</p>
       </div>
     </div>
   </div>
@@ -41,10 +40,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <div class="well">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h5 class="panel-title">Election Year</h5>
+          </div>
+          <div class="panel-body">
+            <p>Use the dropdown menu to select the election year you would like to examine</p>
+            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            <!-- <h6>Text</h6> -->
+          </div>  
+        </div>
+        <!-- <div class="well">
           <h5>Election year</h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-6">  
         <div class="panel panel-primary">
