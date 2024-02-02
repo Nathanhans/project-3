@@ -5,7 +5,7 @@
 } */
 
 #map {
-  height: 700px;
+  height: 850px;
   width: 500px;
   left: 5%;
 }
@@ -19,7 +19,7 @@
 
 #bar {
   /* left: 30%; */
-  height: 700px;
+  height: 900px;
   width: 800px;
   /* margin: 5%; */
   /* bottom: 500px; */
@@ -28,7 +28,7 @@
 
 #bubble {
   /* left: 60%; */
-  height: 700px;
+  height: 850px;
   width: 500px;
   /* bottom: 1000px; */
 }
