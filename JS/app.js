@@ -118,7 +118,7 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
         { party_votes.Other = party_votes.Other + 1}
                                                     }
 //CHART 1, HORIZONTAL BAR
-let trace1 = {x: yVals, y: xVals, orientation:'h', type: 'bar', marker: {color: colors}};
+let trace1 = {x: yVals.reverse(), y: xVals.reverse(), orientation:'h', type: 'bar', marker: {color: colors.reverse()}};
 let data = [trace1];
 let layout = {
               title: {text: 'Winning Percentage of Votes by County', font: {size: 22}}, showlegend: false, 
@@ -228,7 +228,7 @@ d3.json('../data/California_County_Boundaries.geojson').then(function(data)
       // UPDATE BAR CHART
       
 
-      let trace1 = {x: yVals, y: xVals, orientation:'h', type: 'bar', marker: {color: colors}};
+      let trace1 = {x: yVals.reverse(), y: xVals.reverse(), orientation:'h', type: 'bar', marker: {color: colors.reverse()}};
       let data = [trace1];
       let layout = {
         title: {text: 'Winning Percentage of Votes by County', font: {size: 22}}, showlegend: false, 
